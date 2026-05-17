@@ -77,52 +77,6 @@ gato-4x4-minimax/
     └── presentation.pptx
 ```
 
-## File Description
-
-### `src/main.py`
-
-Main entry point of the program.  
-It allows the user to select the game mode and starts the game.
-
-### `src/board.py`
-
-Contains the board representation and functions to display or update the board.
-
-### `src/game.py`
-
-Controls the general flow of the game, including turns, player input, and game execution.
-
-### `src/rules.py`
-
-Contains the game rules, including:
-
-- Legal move generation
-- Win detection
-- Draw detection
-- Terminal state detection
-
-### `src/ai/minimax.py`
-
-Contains the basic Minimax algorithm implementation.
-
-### `src/ai/alpha_beta.py`
-
-Contains the Minimax algorithm optimized with Alpha-Beta Pruning.
-
-### `src/ai/evaluation.py`
-
-Contains the utility function and heuristic evaluation function used by the AI.
-
-## How to Run
-
-Make sure you have Python installed.
-
-Then, run the following command:
-
-```bash
-python src/main.py
-```
-
 ## Algorithms Used
 
 ## Minimax
@@ -177,12 +131,6 @@ The project compares the number of nodes evaluated by:
 1. Basic Minimax
 2. Minimax with Alpha-Beta Pruning
 
-The results are documented in:
-
-```text
-docs/results.md
-```
-
 ## Deliverables
 
 The project includes:
@@ -205,10 +153,7 @@ The repository uses the following branch structure:
 main
 develop
 feature/human-vs-human
-feature/ai-minimax
-feature/alpha-beta
-feature/heuristic
-feature/documentation
+feature/ia-vs-human
 ```
 
 ### Branch Description
@@ -218,32 +163,7 @@ feature/documentation
 | `main` | Final stable version |
 | `develop` | Integration branch |
 | `feature/human-vs-human` | Human vs Human game mode |
-| `feature/ai-minimax` | Basic AI with Minimax |
-| `feature/alpha-beta` | Alpha-Beta Pruning implementation |
-| `feature/heuristic` | Depth-limited heuristic evaluation |
-| `feature/documentation` | Report, results, and presentation |
-
-## Development Workflow
-
-1. Create a feature branch from `develop`.
-2. Work only on the assigned feature branch.
-3. Commit changes with clear messages.
-4. Push the branch to GitHub.
-5. Open a Pull Request to `develop`.
-6. Test the integrated version.
-7. Merge `develop` into `main` only when the project is stable.
-
-## Example Commit Messages
-
-```bash
-git commit -m "Add board representation"
-git commit -m "Implement win detection"
-git commit -m "Add human vs human mode"
-git commit -m "Implement basic minimax algorithm"
-git commit -m "Add alpha-beta pruning"
-git commit -m "Add node evaluation counter"
-git commit -m "Update project report"
-```
+| `feature/ai-vs-human` | Basic AI with Minimax based on Human vs Human game mode |
 
 ## Authors
 
