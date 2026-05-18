@@ -1,0 +1,7 @@
+BOARD_SIZE = 4
+
+EMPTY = "."
+PLAYER_1 = "X"
+PLAYER_2 = "O"
+
+PLAYER = [PLAYER_1, PLAYER_2]
