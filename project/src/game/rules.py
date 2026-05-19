@@ -1,3 +1,4 @@
+from .state import GameState
 from .constants import BOARD_SIZE, EMPTY, PLAYER_1, PLAYER_2
 
 
@@ -76,3 +77,73 @@ def is_legal_move(state, move):
         return False
     
     return state.board[row][col] == EMPTY
+
+def check_winner(board):
+    lines = []
+
+    for row in range(BOARD_SIZE):
+        line = []
+
+        for col in range(BOARD_SIZE):
+            line.append(board[row][col])
+
+        lines.append(line)
+
+    for col in range(BOARD_SIZE):
+        line = []
+
+        for row in range(BOARD_SIZE):
+            line.append(board[row][col])
+
+        lines.append(line)
+    
+    diagonal = []
+
+    for i in range(BOARD_SIZE):
+        diagonal.append(board[i][BOARD_SIZE - 1 - i])
+
+    lines.append(diagonal)
+
+    for line in lines:
+        first_cell = line[0]
+
+        if first_cell == EMPTY:
+            continue
+
+        if all(cell == first_cell for cell in line):
+            return first_cell
+        
+    return None
+
+
+
+
+def apply_move(state, move):
+
+    if not is_legal_move(state, move):
+        raise ValueError("Movimiento ilegal")
+    
+    row, col = move
+
+    new_board_as_list = [list(row) for row in state.board]
+    new_board_as_list[row][col] = state.current_player
+
+    new_board = tuple(tuple(row) 
+                      for row in new_board_as_list
+                      )
+    
+    winner = check_winner(new_board)
+
+    return GameState(
+        board=new_board,
+        current_player=switch_player(state.current_player),
+        winner=winner
+    )
+
+def is_draw(state):
+    if state.winner is not None:
+        return False
+    
+    return len(get_legal_moves(state)) == 0
+
+
