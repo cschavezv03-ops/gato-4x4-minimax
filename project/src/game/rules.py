@@ -79,8 +79,14 @@ def is_legal_move(state, move):
     return state.board[row][col] == EMPTY
 
 def check_winner(board):
+    """
+    Verifica si hay un ganador en el tablero
+    param board: Board - El tablero del juego
+    return: Optional[str] - Devuelve el simbolo del jugador que gano
+    """
     lines = []
 
+    #Validar filas
     for row in range(BOARD_SIZE):
         line = []
 
@@ -89,6 +95,7 @@ def check_winner(board):
 
         lines.append(line)
 
+    #Validar columnas
     for col in range(BOARD_SIZE):
         line = []
 
@@ -97,12 +104,21 @@ def check_winner(board):
 
         lines.append(line)
     
-    diagonal = []
+    #Validar diagonal principal
+    diagonalP = []
 
     for i in range(BOARD_SIZE):
-        diagonal.append(board[i][BOARD_SIZE - 1 - i])
+        diagonalP.append(board[i][i])
+    
+    lines.append(diagonalP)
+    
+    #Validar diagonal secundaria
+    diagonalS = []
 
-    lines.append(diagonal)
+    for i in range(BOARD_SIZE):
+        diagonalS.append(board[i][BOARD_SIZE - 1 - i])
+
+    lines.append(diagonalS)
 
     for line in lines:
         first_cell = line[0]
@@ -119,7 +135,14 @@ def check_winner(board):
 
 
 def apply_move(state, move):
-
+    """
+    Aplica un movimiento al estado actual del juego y devuelve el nuevo estado resultante.
+    param 
+    state: GameState - El estado actual del juego
+    move: Tuple[int, int] - La posición del movimiento a aplicar
+    return 
+    GameState - El nuevo estado del juego después de aplicar el movimiento
+    """
     if not is_legal_move(state, move):
         raise ValueError("Movimiento ilegal")
     
@@ -128,9 +151,7 @@ def apply_move(state, move):
     new_board_as_list = [list(row) for row in state.board]
     new_board_as_list[row][col] = state.current_player
 
-    new_board = tuple(tuple(row) 
-                      for row in new_board_as_list
-                      )
+    new_board = tuple(tuple(row) for row in new_board_as_list)
     
     winner = check_winner(new_board)
 
@@ -141,6 +162,12 @@ def apply_move(state, move):
     )
 
 def is_draw(state):
+    """
+    Verifica si el estado del juego es empate.
+    param
+    state: GameState - El estado actual del juego
+    return: bool - True si el estado es empate, False de lo contrario
+    """
     if state.winner is not None:
         return False
     

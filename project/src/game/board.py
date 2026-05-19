@@ -21,7 +21,7 @@ def board_to_string(board):
 
     lines = []
 
-    header = "  " + "  ".join(str(col) for col in range(size)) #Imprime número de las columnas (encabezado)
+    header = "   " + "   ".join(str(col) for col in range(size)) #Imprime número de las columnas (encabezado)
     lines.append(header) #Guarda el encabezado en lines
 
     for row_index, row in enumerate(board): 
