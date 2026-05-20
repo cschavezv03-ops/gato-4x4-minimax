@@ -1,4 +1,4 @@
-# Imagen del backend: API FastAPI del juego Gato 4x4.
+# Imagen del backend: API FastAPI del juego Gato.
 FROM python:3.12-slim
 
 WORKDIR /srv
@@ -7,10 +7,12 @@ WORKDIR /srv
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
-# Instala el proyecto y sus dependencias.
-COPY pyproject.toml README.md ./
+# Instala las dependencias primero (capa cacheable).
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copia el código de la aplicación.
 COPY app ./app
-RUN pip install --no-cache-dir .
 
 # Ejecuta como usuario sin privilegios.
 RUN useradd --create-home appuser
