@@ -32,6 +32,8 @@ Then open http://localhost:5173.
 Without Docker, start each module separately — see the README in `backend/` and
 `frontend/`.
 
+For production deployment (Coolify, etc.), see [`DEPLOY.md`](DEPLOY.md).
+
 ## Team Members
 
 - Member 1: Renato Aguilar
