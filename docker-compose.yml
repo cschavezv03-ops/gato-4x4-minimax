@@ -1,6 +1,10 @@
 # Levanta el juego completo: API (backend) e interfaz web (frontend).
 # Uso:  docker compose up --build
 # Luego abrir http://localhost:5173
+#
+# Para apuntar a otras URLs (despliegue), exportar antes:
+#   VITE_API_URL=https://api.midominio.com
+#   CORS_ORIGINS=https://gato.midominio.com
 
 services:
   backend:
@@ -8,13 +12,13 @@ services:
     ports:
       - "8000:8000"
     environment:
-      CORS_ORIGINS: "http://localhost:5173"
+      CORS_ORIGINS: "${CORS_ORIGINS:-http://localhost:5173}"
 
   frontend:
     build:
       context: ./frontend
       args:
-        VITE_API_URL: "http://localhost:8000"
+        VITE_API_URL: "${VITE_API_URL:-http://localhost:8000}"
     ports:
       - "5173:80"
     depends_on:
