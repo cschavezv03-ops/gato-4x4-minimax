@@ -1,0 +1,38 @@
+.cell {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: var(--radius-md);
+  background-color: var(--color-cell);
+  color: var(--color-mark-o);
+  transition:
+    background-color var(--transition),
+    transform var(--transition);
+}
+
+.cell:not(:disabled):hover {
+  background-color: var(--color-cell-hover);
+}
+
+.cell:not(:disabled):active {
+  transform: scale(0.95);
+}
+
+.cell:disabled {
+  cursor: default;
+}
+
+.x {
+  color: var(--color-mark-x);
+}
+
+.o {
+  color: var(--color-mark-o);
+}
+
+/* La casilla ganadora se ilumina; las fichas se oscurecen para contrastar. */
+.winning {
+  background-color: var(--color-cell-win);
+  color: var(--color-on-accent);
+}

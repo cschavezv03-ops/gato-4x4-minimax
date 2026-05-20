@@ -5,6 +5,33 @@ The game implemented is a 4x4 version of Tic-Tac-Toe, where a human player can p
 
 The AI uses the Minimax algorithm, Alpha-Beta Pruning, and a heuristic evaluation function when depth-limited search is required.
 
+## Repository Structure
+
+This repository has three parts:
+
+- **`project/`** — original console version of the game (Python). Unchanged.
+- **`backend/`** — REST API (FastAPI) that reuses the game logic and the AI.
+  See [`backend/README.md`](backend/README.md).
+- **`frontend/`** — modern web interface (Vite + React + TypeScript).
+  See [`frontend/README.md`](frontend/README.md).
+
+The `backend/` module is an adapted, improved copy of the core in
+`project/src/game/` (consistent imports, type hints, no console coupling); the
+original module is left untouched.
+
+### Running the web version
+
+With Docker:
+
+```bash
+docker compose up --build
+```
+
+Then open http://localhost:5173.
+
+Without Docker, start each module separately — see the README in `backend/` and
+`frontend/`.
+
 ## Team Members
 
 - Member 1: Renato Aguilar
