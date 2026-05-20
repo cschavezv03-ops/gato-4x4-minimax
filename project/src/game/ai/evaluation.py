@@ -1,10 +1,6 @@
-from game.constants import BOARD_SIZE, EMPTY
+from game.constants import BOARD_SIZE, EMPTY, WIN_SCORE, LOSE_SCORE, DRAW_SCORE
 from game.rules import is_terminal, is_draw
 
-
-WIN_SCORE = 100000
-LOSE_SCORE = -100000
-DRAW_SCORE = 0
 
 # Funciones auxiliares para heurística
 def get_lines(board):

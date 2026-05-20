@@ -25,9 +25,9 @@ def show_ai_welcome(ai_player, human_player, depth_limit):
     print(f"Humano: {human_player}")
 
     if depth_limit is None:
-        print("Minimax: busqueda completa")
+        print("Busqueda completa")
     else:
-        print(f"Minimax: profundidad {depth_limit}")
+        print(f"Profundidad: {depth_limit}")
 
 def show_board(state):
     """
@@ -108,3 +108,66 @@ def show_goodbye():
     Impresión indicando fin de la partida actual.
     """
     print("Fin de la partida")
+
+def show_main_menu():
+    """
+    Muestra en consola los modos de juego disponibles.
+    return: None
+    """
+    print("================================")
+    print("  GATO 4x4 - MENU PRINCIPAL")
+    print("================================")
+    print("1. Humano vs Humano")
+    print("2. Humano vs IA - Minimax")
+    print("3. Humano vs IA - Alpha-Beta")
+    print("4. Humano vs IA - Comparacion de nodos")
+    print("5. Salir")
+
+def ask_game_mode():
+    """
+    Pregunta al usuario que modo de juego desea ejecutar.
+    return: str - Opcion elegida por el usuario
+    """
+    return input("Selecciona una opcion: ")
+
+def show_invalid_option():
+    """
+    Muestra en consola que la opcion elegida no existe.
+    return: None
+    """
+    print("Opcion invalida, intentalo nuevamente")
+
+def show_comparison_welcome(ai_player, human_player, depth_limit):
+    """
+    Muestra en consola un encabezado para el modo de comparacion de nodos.
+    param
+    ai_player: str - Jugador que representa a la IA
+    human_player: str - Jugador que representa al humano
+    depth_limit: int | None - Profundidad maxima usada por los algoritmos
+    return: None
+    """
+    print("================================")
+    print("  GATO 4x4 - COMPARACION NODOS")
+    print("================================")
+    print(f"IA: {ai_player}")
+    print(f"Humano: {human_player}")
+    print(f"Profundidad: {depth_limit}")
+
+def show_node_comparison(minimax_move, minimax_score, minimax_nodes, alpha_beta_move, alpha_beta_score, alpha_beta_nodes):
+    """
+    Muestra en consola la comparacion de nodos evaluados entre Minimax y Alpha-Beta.
+    param
+    minimax_move: Tuple[int, int] - Movimiento elegido por Minimax
+    minimax_score: int - Puntaje obtenido por Minimax
+    minimax_nodes: int - Nodos evaluados por Minimax
+    alpha_beta_move: Tuple[int, int] - Movimiento elegido por Alpha-Beta
+    alpha_beta_score: int - Puntaje obtenido por Alpha-Beta
+    alpha_beta_nodes: int - Nodos evaluados por Alpha-Beta
+    return: None
+    """
+    saved_nodes = minimax_nodes - alpha_beta_nodes
+
+    print("Comparacion de nodos evaluados:")
+    print(f"Minimax    -> movimiento: {minimax_move}, puntaje: {minimax_score}, nodos: {minimax_nodes}")
+    print(f"Alpha-Beta -> movimiento: {alpha_beta_move}, puntaje: {alpha_beta_score}, nodos: {alpha_beta_nodes}")
+    print(f"Nodos evitados por Alpha-Beta: {saved_nodes}")
