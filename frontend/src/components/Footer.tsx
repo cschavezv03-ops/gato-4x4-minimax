@@ -1,18 +1,11 @@
+import { TeamCredit } from "./TeamCredit";
 import styles from "./Footer.module.css";
 
-const MEMBERS = [
-  "Renato Aguilar",
-  "Sebastian Chavez",
-  "Frank Jumbo",
-  "Dax Navarrete",
-];
-
-/** Crédito del equipo, discreto al pie de la aplicación. */
+/** Pie de página con el crédito del equipo (pantalla de partida). */
 export function Footer() {
   return (
     <footer className={styles.footer}>
-      <span className={styles.group}>Grupo 5</span>
-      <span className={styles.members}>{MEMBERS.join(" · ")}</span>
+      <TeamCredit />
     </footer>
   );
 }

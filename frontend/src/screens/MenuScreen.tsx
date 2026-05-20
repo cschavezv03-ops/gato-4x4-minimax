@@ -10,6 +10,7 @@ import { ErrorBanner } from "../components/ErrorBanner";
 import { Field } from "../components/Field";
 import { Segmented } from "../components/Segmented";
 import { SettingsPanel } from "../components/SettingsPanel";
+import { TeamCredit } from "../components/TeamCredit";
 import styles from "./MenuScreen.module.css";
 
 interface MenuScreenProps {
@@ -43,6 +44,7 @@ export function MenuScreen({
       <header className={styles.header}>
         <h1 className={styles.title}>Gato</h1>
         <p className={styles.subtitle}>Tres en raya contra una IA</p>
+        <TeamCredit className={styles.credit} />
       </header>
 
       <div className={styles.fields}>

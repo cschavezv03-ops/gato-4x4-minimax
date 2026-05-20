@@ -19,6 +19,10 @@
   color: var(--color-text-muted);
 }
 
+.credit {
+  margin-top: var(--space-3);
+}
+
 .fields {
   display: flex;
   flex-direction: column;

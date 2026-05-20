@@ -8,11 +8,12 @@ import styles from "./App.module.css";
 /** Componente raíz: alterna entre el menú y la pantalla de partida. */
 export function App() {
   const game = useGame();
+  const isMenu = game.state.status === STATUS.MENU;
 
   return (
     <main className={styles.app}>
       <div className={styles.shell}>
-        {game.state.status === STATUS.MENU ? (
+        {isMenu ? (
           <MenuScreen
             config={game.state.config}
             error={game.state.error}
@@ -23,7 +24,8 @@ export function App() {
           <GameScreen game={game} />
         )}
       </div>
-      <Footer />
+      {/* El crédito vive en el menú; en la partida se muestra al pie. */}
+      {!isMenu && <Footer />}
     </main>
   );
 }

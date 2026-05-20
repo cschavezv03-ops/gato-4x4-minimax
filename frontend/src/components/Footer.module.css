@@ -1,18 +1,3 @@
 .footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
   padding-top: var(--space-6);
-  text-align: center;
-  color: var(--color-text-muted);
-}
-
-.group {
-  font-size: var(--text-sm);
-  font-weight: 600;
-}
-
-.members {
-  font-size: 0.75rem;
 }
