@@ -1,3 +1,4 @@
+import { Footer } from "./components/Footer";
 import { useGame } from "./hooks/useGame";
 import { STATUS } from "./state/gameReducer";
 import { GameScreen } from "./screens/GameScreen";
@@ -22,6 +23,7 @@ export function App() {
           <GameScreen game={game} />
         )}
       </div>
+      <Footer />
     </main>
   );
 }
