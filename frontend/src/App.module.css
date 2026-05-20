@@ -1,0 +1,28 @@
+.app {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-5) var(--space-4);
+}
+
+/* Móvil: columna compacta. Se ensancha en tablet y escritorio. */
+.shell {
+  margin: auto;
+  width: 100%;
+  max-width: 420px;
+}
+
+@media (min-width: 600px) {
+  .app {
+    padding: var(--space-6) var(--space-5);
+  }
+  .shell {
+    max-width: 480px;
+  }
+}
+
+@media (min-width: 900px) {
+  .shell {
+    max-width: 560px;
+  }
+}
