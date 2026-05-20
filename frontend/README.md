@@ -1,65 +1,64 @@
-# Frontend — Gato IA
+# Frontend — Tic-Tac-Toe AI
 
-Interfaz web del juego Gato (tres en raya) con tableros 3×3 y 4×4. Aplicación
-de una sola página construida con Vite, React y TypeScript. Consume la API del
-backend.
+Web interface for the Tic-Tac-Toe game with 3×3 and 4×4 boards. Single-page
+application built with Vite, React, and TypeScript. It consumes the backend API.
 
-## Arquitectura
+## Architecture
 
 ```
 src/
-├── domain/       Tipos del dominio (única fuente de verdad)
-├── services/     Cliente HTTP de la API (traduce snake_case a camelCase)
-├── state/        Reducer: máquina de estados de la partida (puro)
-├── hooks/        useGame: combina el reducer con los efectos de la API
-├── components/   Componentes de interfaz reutilizables
-├── screens/      Pantallas: menú y partida
-└── styles/       Tokens de diseño y estilos globales
+├── domain/       Domain types (single source of truth)
+├── services/     API HTTP client (translates snake_case to camelCase)
+├── state/        Reducer: the game state machine (pure)
+├── hooks/        useGame: combines the reducer with the API effects
+├── components/   Reusable UI components
+├── screens/      Screens: menu and game
+└── styles/       Design tokens and global styles
 ```
 
-La lógica de las reglas vive solo en el backend: el frontend nunca la
-reimplementa, lo que evita tener dos fuentes de verdad.
+The rules logic lives only in the backend: the frontend never reimplements it,
+which avoids having two sources of truth.
 
-## Requisitos
+## Requirements
 
-- Node.js 20 o superior
+- Node.js 20 or higher
 
-## Instalación
+## Installation
 
 ```bash
 cd frontend
 npm install
 ```
 
-## Ejecución
+## Running
 
 ```bash
 npm run dev
 ```
 
-La aplicación queda en http://localhost:5173 (necesita el backend en marcha).
+The app runs at http://localhost:5173 (needs the backend running).
 
 ## Scripts
 
-| Script           | Descripción                                  |
-|------------------|----------------------------------------------|
-| `npm run dev`    | Servidor de desarrollo.                      |
-| `npm run build`  | Verifica tipos y genera el sitio en `dist/`. |
-| `npm run preview`| Sirve el sitio ya construido.                |
-| `npm test`       | Ejecuta los tests (Vitest).                  |
+| Script            | Description                                  |
+|-------------------|----------------------------------------------|
+| `npm run dev`     | Development server.                          |
+| `npm run build`   | Type-checks and builds the site into `dist/`.|
+| `npm run preview` | Serves the already-built site.               |
+| `npm test`        | Runs the tests (Vitest).                     |
 
-## Variables de entorno
+## Environment variables
 
-| Variable        | Por defecto              | Descripción                          |
+| Variable        | Default                  | Description                          |
 |-----------------|--------------------------|--------------------------------------|
-| `VITE_API_URL`  | `http://localhost:8000`  | URL base de la API del backend.      |
+| `VITE_API_URL`  | `http://localhost:8000`  | Base URL of the backend API.         |
 
-Las variables de Vite se fijan en tiempo de compilación. Para producción,
-defínela antes de `npm run build`.
+Vite variables are fixed at build time. For production, set it before running
+`npm run build`.
 
-## Diseño
+## Design
 
-- Estilo Flat Design, tema oscuro con tablero verde y acentos azules.
-- Tipografía Plus Jakarta Sans.
-- Accesible: navegación por teclado, contraste alto, `prefers-reduced-motion`.
-- Responsive desde 320 px: el tablero se adapta a móviles, tablets y escritorio.
+- Flat Design style, dark theme with a green board and blue accents.
+- Plus Jakarta Sans typography.
+- Accessible: keyboard navigation, high contrast, `prefers-reduced-motion`.
+- Responsive from 320 px: the board adapts to phones, tablets, and desktop.

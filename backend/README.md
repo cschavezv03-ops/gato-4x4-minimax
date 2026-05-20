@@ -1,31 +1,31 @@
-# Backend — Gato IA
+# Backend — Tic-Tac-Toe AI
 
-API REST que expone la lógica del juego Gato (tres en raya, tableros 3×3 y 4×4)
-y la IA (Minimax y poda Alpha-Beta). Adapta el núcleo de `project/src/game/`
-sin modificar el original. El tamaño del tablero se deriva del propio tablero,
-por lo que las reglas y la IA funcionan igual para ambos tamaños.
+REST API that exposes the Tic-Tac-Toe game logic (3×3 and 4×4 boards) and the AI
+(Minimax and Alpha-Beta pruning). It adapts the core from `project/src/game/`
+without modifying the original. The board size is derived from the board itself,
+so the rules and the AI work the same for both sizes.
 
-## Arquitectura
+## Architecture
 
 ```
 app/
-├── core/        Núcleo puro: estado, reglas, constantes (sin dependencias de UI)
-├── ai/          Algoritmos: Minimax, Alpha-Beta y evaluación heurística
-├── schemas/     Modelos Pydantic (contrato de la API)
-├── services/    Orquesta núcleo + IA y traduce al contrato de la API
-├── api/         Rutas REST
-├── config.py    Configuración leída del entorno
-└── main.py      Punto de entrada FastAPI
+├── core/        Pure core: state, rules, constants (no UI dependencies)
+├── ai/          Algorithms: Minimax, Alpha-Beta, and heuristic evaluation
+├── schemas/     Pydantic models (the API contract)
+├── services/    Orchestrates core + AI and translates to the API contract
+├── api/         REST routes
+├── config.py    Configuration read from the environment
+└── main.py      FastAPI entry point
 ```
 
-La API es **stateless**: cada petición lleva el tablero completo. No hay base de
-datos ni sesiones.
+The API is **stateless**: every request carries the full board. There is no
+database and no sessions.
 
-## Requisitos
+## Requirements
 
-- Python 3.11 o superior
+- Python 3.11 or higher
 
-## Instalación
+## Installation
 
 ```bash
 cd backend
@@ -34,14 +34,14 @@ source .venv/bin/activate
 pip install -r requirements-dev.txt
 ```
 
-## Ejecución
+## Running
 
 ```bash
 uvicorn app.main:app --reload
 ```
 
 - API: http://localhost:8000
-- Documentación interactiva (Swagger): http://localhost:8000/api/docs
+- Interactive documentation (Swagger): http://localhost:8000/api/docs
 
 ## Tests
 
@@ -49,26 +49,26 @@ uvicorn app.main:app --reload
 pytest
 ```
 
-## Variables de entorno
+## Environment variables
 
-| Variable       | Por defecto                                            | Descripción                              |
-|----------------|--------------------------------------------------------|------------------------------------------|
-| `CORS_ORIGINS` | `http://localhost:5173,http://127.0.0.1:5173`          | Orígenes permitidos por CORS, por comas. |
+| Variable       | Default                                                | Description                            |
+|----------------|--------------------------------------------------------|----------------------------------------|
+| `CORS_ORIGINS` | `http://localhost:5173,http://127.0.0.1:5173`          | Comma-separated list of allowed CORS origins. |
 
 ## Endpoints
 
-| Método | Ruta              | Descripción                                      |
-|--------|-------------------|--------------------------------------------------|
-| GET    | `/api/health`     | Estado del servicio.                             |
-| POST   | `/api/games/new`  | Estado inicial de una partida (`{"size": 3}` o `4`). |
-| POST   | `/api/moves`      | Aplica una jugada (422 si es ilegal).            |
-| POST   | `/api/ai/move`    | Jugada de la IA con métricas.                    |
-| POST   | `/api/ai/compare` | Compara Minimax vs Alpha-Beta sobre el estado.   |
+| Method | Route             | Description                                       |
+|--------|-------------------|---------------------------------------------------|
+| GET    | `/api/health`     | Service status.                                   |
+| POST   | `/api/games/new`  | Initial state of a game (`{"size": 3}` or `4`).   |
+| POST   | `/api/moves`      | Applies a move (422 if illegal).                  |
+| POST   | `/api/ai/move`    | AI move with metrics.                             |
+| POST   | `/api/ai/compare` | Compares Minimax vs Alpha-Beta on the state.      |
 
-### Parámetros de la IA
+### AI parameters
 
-- `algorithm`: `minimax` o `alpha_beta`.
-- `depth_limit`: profundidad de búsqueda (entero de 1 a 6; por defecto 3).
+- `algorithm`: `minimax` or `alpha_beta`.
+- `depth_limit`: search depth (integer from 1 to 6; default 3).
 
-Si el tablero está vacío, la IA juega una posición aleatoria: la búsqueda completa
-desde el tablero vacío es intratable (mismo criterio que el proyecto original).
+If the board is empty, the AI plays a random position: a full search from the
+empty board is intractable (same criterion as the original project).
