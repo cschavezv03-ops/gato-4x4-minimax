@@ -1,0 +1,66 @@
+/**
+ * Tokens de diseño — tema oscuro con tablero verde y acentos azules.
+ * Única fuente de verdad para colores, espaciado y tipografía.
+ */
+
+:root {
+  /* Superficies */
+  --color-bg: #0f172a;
+  --color-panel: #16202e;
+  --color-panel-strong: #1f2c3d;
+
+  /* Tablero (azul, de la paleta) */
+  --color-board: #24378f;
+  --color-cell: #182253;
+  --color-cell-hover: #2c3f86;
+  --color-cell-win: #71b6f4;
+
+  /* Bordes */
+  --color-border: rgba(255, 255, 255, 0.07);
+  --color-border-strong: rgba(255, 255, 255, 0.14);
+
+  /* Texto */
+  --color-text: #f8fafc;
+  --color-text-muted: #93a4b8;
+
+  /* Acentos (azules) */
+  --color-accent: #71b6f4;
+  --color-accent-hover: #8cc6f7;
+  --color-accent-deep: #24378f;
+  --color-on-accent: #08152c;
+
+  /* Estado */
+  --color-danger: #f87171;
+
+  /* Fichas */
+  --color-mark-x: #71b6f4;
+  --color-mark-o: #f1f5f9;
+
+  /* Foco accesible */
+  --color-ring: #71b6f4;
+
+  /* Espaciado — escala de 4 / 8 */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-8: 48px;
+
+  /* Radios */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  /* Tipografía */
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --text-sm: 0.8125rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+  --text-2xl: 2.5rem;
+
+  /* Movimiento */
+  --transition: 160ms ease;
+}

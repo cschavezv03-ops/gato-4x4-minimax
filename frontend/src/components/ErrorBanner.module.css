@@ -1,0 +1,17 @@
+/* Aviso discreto: barra de acento a la izquierda, sin recuadro de alarma. */
+.banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-panel);
+  border-left: 3px solid var(--color-danger);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+}
+
+.icon {
+  flex-shrink: 0;
+  color: var(--color-danger);
+}
