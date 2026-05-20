@@ -1,201 +1,189 @@
-# 4x4 Tic-Tac-Toe with Minimax and Alpha-Beta Pruning
+# Gato con IA — Minimax y poda Alpha-Beta
 
-This project is an Artificial Intelligence assignment focused on adversarial search in two-player games.  
-The game implemented is a 4x4 version of Tic-Tac-Toe, where a human player can play against another human or against an AI opponent.
+Juego del Gato (tres en raya) con tableros **3×3 y 4×4** y una IA basada en
+búsqueda adversaria. Proyecto académico de Inteligencia Artificial — EPN.
 
-The AI uses the Minimax algorithm, Alpha-Beta Pruning, and a heuristic evaluation function when depth-limited search is required.
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi&logoColor=white)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-## Repository Structure
+La IA juega como **MAX** (maximiza su puntaje) contra el humano, que actúa como
+**MIN**. Para árboles grandes la búsqueda se limita por profundidad y, al
+alcanzar el límite, evalúa el tablero con una función heurística.
 
-This repository has three parts:
+<p align="center">
+  <img src="docs/screenshot.png" alt="Interfaz web del juego: tablero 4×4 con victoria de la IA y panel de métricas" width="420">
+</p>
 
-- **`project/`** — original console version of the game (Python). Unchanged.
-- **`backend/`** — REST API (FastAPI) that reuses the game logic and the AI.
-  See [`backend/README.md`](backend/README.md).
-- **`frontend/`** — modern web interface (Vite + React + TypeScript).
-  See [`frontend/README.md`](frontend/README.md).
+---
 
-The `backend/` module is an adapted, improved copy of the core in
-`project/src/game/` (consistent imports, type hints, no console coupling); the
-original module is left untouched.
+## Características
 
-### Running the web version
+- **Dos tamaños de tablero:** 3×3 y 4×4 — las reglas y la IA derivan el tamaño
+  del propio tablero, así que funcionan igual para ambos.
+- **Dos modos de juego:** Humano vs Humano y Humano vs IA.
+- **Tres algoritmos:** Minimax, Minimax con poda Alpha-Beta y un modo
+  comparación que ejecuta ambos sobre el mismo estado.
+- **Métricas en vivo:** nodos evaluados, puntaje y tiempo de cálculo.
+- **Búsqueda con límite de profundidad** (1 a 6) y heurística para estados no
+  terminales.
+- **Resaltado de la línea ganadora** al terminar la partida.
 
-With Docker:
+---
+
+## Estructura del repositorio
+
+El proyecto tiene tres partes independientes:
+
+| Carpeta      | Qué es                          | Stack                          |
+|--------------|---------------------------------|--------------------------------|
+| `project/`   | Versión original de consola     | Python                         |
+| `backend/`   | API REST que expone juego e IA  | FastAPI · Pydantic             |
+| `frontend/`  | Interfaz web                    | Vite · React 19 · TypeScript   |
+
+```
+gato-4x4-minimax/
+├── project/      # Versión de consola (núcleo original, intacto)
+├── backend/      # API REST  →  ver backend/README.md
+├── frontend/     # Interfaz web  →  ver frontend/README.md
+└── docker-compose.yml
+```
+
+`backend/` es una copia adaptada del núcleo de `project/src/game/` (imports
+consistentes, type hints, sin acoplamiento a la consola). El módulo original se
+deja sin tocar. La lógica de las reglas vive **solo en el backend**: el frontend
+nunca la reimplementa, evitando dos fuentes de verdad.
+
+---
+
+## Inicio rápido
+
+La forma más simple de levantar el juego completo (API + web) es con Docker:
 
 ```bash
 docker compose up --build
 ```
 
-Then open http://localhost:5173.
+Luego abrí **http://localhost:5173**.
 
-Without Docker, start each module separately — see the README in `backend/` and
-`frontend/`.
+Para apuntar a otras URLs en un despliegue, exportá antes las variables:
 
-## Team Members
-
-- Member 1: Renato Aguilar
-- Member 2: Sebastian Chavez
-- Member 3: Frank Jumbo
-- Member 4: Dax Navarrete
-
-## Project Objective
-
-The objective of this project is to build a functional two-player game where the computer can make intelligent decisions using adversarial search techniques.
-
-The project applies the following Artificial Intelligence concepts:
-
-- Game states
-- Legal actions
-- Terminal states
-- Utility function
-- MAX and MIN players
-- Minimax algorithm
-- Alpha-Beta Pruning
-- Heuristic evaluation function
-- Depth-limited search
-
-## Game Modes
-
-The application includes the following game modes:
-
-1. Human vs Human
-2. Human vs AI
-
-## Main Features
-
-- 4x4 game board representation
-- Turn-based gameplay
-- Legal move validation
-- Win, loss, and draw detection
-- Human vs Human mode
-- Human vs AI mode
-- Minimax implementation
-- Alpha-Beta Pruning implementation
-- Node evaluation counter
-- Performance comparison between Minimax and Alpha-Beta Pruning
-- Heuristic evaluation for non-terminal states
-
-## Project Structure
-
-```text
-gato-4x4-minimax/
-│
-├── README.md
-├── .gitignore
-│
-├── src/
-│   ├── main.py
-│   ├── board.py
-│   ├── game.py
-│   ├── rules.py
-│   │
-│   └── ai/
-│       ├── minimax.py
-│       ├── alpha_beta.py
-│       └── evaluation.py
-│
-├── docs/
-│   ├── report.md
-│   ├── game_tree_example.md
-│   └── results.md
-│
-└── slides/
-    └── presentation.pptx
+```bash
+VITE_API_URL=https://api.midominio.com
+CORS_ORIGINS=https://gato.midominio.com
 ```
 
-## Algorithms Used
+---
 
-## Minimax
+## Desarrollo local
 
-Minimax is an adversarial search algorithm used in two-player games.  
-It assumes that both players play optimally.
+Cada módulo se ejecuta por separado. Detalles completos en cada README.
 
-The AI is represented as the MAX player, trying to maximize its score.  
-The human opponent is represented as the MIN player, trying to minimize the AI's score.
+**Backend** — requiere Python 3.11+:
 
-## Alpha-Beta Pruning
-
-Alpha-Beta Pruning is an optimization of the Minimax algorithm.  
-It reduces the number of nodes evaluated by ignoring branches that cannot affect the final decision.
-
-This allows the AI to make decisions more efficiently.
-
-## Heuristic Evaluation
-
-For larger game trees, the search may be limited by depth.  
-When the depth limit is reached, the AI evaluates the board using a heuristic function instead of exploring all possible future states.
-
-The heuristic considers factors such as:
-
-- Possible winning lines for the AI
-- Possible winning lines for the opponent
-- Blocking opponent threats
-- Creating future winning opportunities
-
-## Utility Function
-
-Terminal states are evaluated as follows:
-
-```text
-AI wins      -> positive score
-Human wins   -> negative score
-Draw         -> zero
+```bash
+cd backend
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements-dev.txt
+uvicorn app.main:app --reload
 ```
 
-Example:
+API en http://localhost:8000 · Swagger en http://localhost:8000/api/docs
 
-```text
-AI wins      -> +10
-Human wins   -> -10
-Draw         -> 0
+**Frontend** — requiere Node.js 20+:
+
+```bash
+cd frontend
+npm install
+npm run dev
 ```
 
-## Performance Comparison
+Web en http://localhost:5173 (necesita el backend en marcha).
 
-The project compares the number of nodes evaluated by:
+→ [`backend/README.md`](backend/README.md) · [`frontend/README.md`](frontend/README.md)
 
-1. Basic Minimax
-2. Minimax with Alpha-Beta Pruning
+---
 
-## Deliverables
+## Versión de consola
 
-The project includes:
+La versión original vive en `project/` y se juega en la terminal con un menú de
+cinco opciones: Humano vs Humano, IA con Minimax, IA con Alpha-Beta, modo
+comparación y salir.
 
-- Functional game
-- Human vs AI mode
-- Minimax implementation
-- Alpha-Beta Pruning implementation
-- Performance comparison
-- Short written report
-- Partial game tree explanation
-- Presentation slides
-- Live demo
-
-## Git Branches
-
-The repository uses the following branch structure:
-
-```text
-main
-develop
-feature/human-vs-human
-feature/ia-vs-human
+```bash
+cd project
+python3 -m src.game.main
 ```
 
-### Branch Description
+---
 
-| Branch | Purpose |
-|---|---|
-| `main` | Final stable version |
-| `develop` | Integration branch |
-| `feature/human-vs-human` | Human vs Human game mode |
-| `feature/ai-vs-human` | Basic AI with Minimax based on Human vs Human game mode |
+## La IA
 
-## Authors
+El proyecto aplica los conceptos clásicos de búsqueda adversaria:
 
-Developed by students of Artificial Intelligence as a group project.
+| Concepto              | Implementación                                                |
+|-----------------------|---------------------------------------------------------------|
+| Estados y acciones    | `GameState` inmutable; movimientos legales = celdas vacías.    |
+| Estados terminales    | Hay ganador o el tablero está lleno.                          |
+| Función de utilidad   | Victoria `+100000`, derrota `-100000`, empate `0`.            |
+| Minimax               | Explora el árbol asumiendo juego óptimo de ambos lados.       |
+| Poda Alpha-Beta       | Descarta ramas irrelevantes; mismo resultado, menos nodos.    |
+| Heurística            | Suma el valor de cada línea cuando se alcanza el límite.      |
+| Búsqueda con límite   | Profundidad de 1 a 6 (3 por defecto).                         |
 
-## License
+**Heurística:** cada línea (fila, columna o diagonal) vale `10ⁿ` según las
+fichas de la IA, y `−10ⁿ` según las del oponente. Una línea mixta no sirve a
+nadie y vale `0`. El puntaje del tablero es la suma de todas sus líneas.
 
-This project is for academic purposes.
+**Tablero vacío:** la búsqueda completa desde cero es intratable, así que la IA
+abre con una jugada aleatoria (mismo criterio que la versión de consola).
+
+**Comparación:** ambos algoritmos eligen la misma jugada óptima. El modo
+comparación mide la diferencia de **nodos evaluados** — la prueba concreta de
+que la poda Alpha-Beta hace el mismo trabajo explorando menos.
+
+---
+
+## API REST
+
+La API es **stateless**: cada petición lleva el tablero completo. No hay base de
+datos ni sesiones.
+
+| Método | Ruta              | Descripción                                       |
+|--------|-------------------|---------------------------------------------------|
+| GET    | `/api/health`     | Estado del servicio.                              |
+| POST   | `/api/games/new`  | Estado inicial de una partida (`size`: 3 o 4).    |
+| POST   | `/api/moves`      | Aplica una jugada (422 si es ilegal).             |
+| POST   | `/api/ai/move`    | Jugada de la IA con métricas.                     |
+| POST   | `/api/ai/compare` | Compara Minimax vs Alpha-Beta sobre el estado.    |
+
+Contrato completo y parámetros en [`backend/README.md`](backend/README.md) o en
+la documentación interactiva de Swagger.
+
+---
+
+## Tests
+
+```bash
+cd backend  && pytest      # 60 tests: reglas, IA y API
+cd frontend && npm test    # tests del reducer de estado (Vitest)
+```
+
+---
+
+## Equipo
+
+**Grupo 5** — Inteligencia Artificial, EPN
+
+- Renato Aguilar
+- Sebastián Chávez
+- Frank Jumbo
+- Dax Navarrete
+
+---
+
+## Licencia
+
+[MIT](LICENSE)
