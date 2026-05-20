@@ -9,6 +9,26 @@ def show_welcome():
     print("  GATO 4x4 - HUMAN VS HUMAN")
     print("================================")
 
+def show_ai_welcome(ai_player, human_player, depth_limit):
+    """
+    Muestra en consola un encabezado para el modo humano contra IA.
+    param
+    ai_player: str - Jugador que representa a la IA
+    human_player: str - Jugador que representa al humano
+    depth_limit: int | None - Profundidad maxima usada por Minimax
+    return: None
+    """
+    print("================================")
+    print("  GATO 4x4 - IA VS HUMANO")
+    print("================================")
+    print(f"IA: {ai_player}")
+    print(f"Humano: {human_player}")
+
+    if depth_limit is None:
+        print("Minimax: busqueda completa")
+    else:
+        print(f"Minimax: profundidad {depth_limit}")
+
 def show_board(state):
     """
     Muestra el tablero 4x4 en donde se va a jugar.
@@ -43,6 +63,30 @@ def show_invalid_move():
     Impresión cuando se presenta un movimiento inválido, fuera del tablero 4x4.
     """
     print("Movimiento inválido, intentalo nuevamente")
+
+def show_ai_turn(ai_player):
+    """
+    Muestra en consola que la IA esta calculando su movimiento.
+    param
+    ai_player: str - Jugador que representa a la IA
+    return: None
+    """
+    print(f"Turno de la IA ({ai_player})...")
+
+def show_ai_move(move, score, nodes):
+    """
+    Muestra en consola el movimiento elegido por la IA.
+    param
+    move: Tuple[int, int] - Movimiento elegido por la IA
+    score: int - Puntaje obtenido por Minimax
+    nodes: int - Cantidad de nodos evaluados
+    return: None
+    """
+    row, col = move
+
+    print(f"IA jugo en fila {row}, columna {col}")
+    print(f"Puntaje: {score}")
+    print(f"Nodos evaluados: {nodes}")
 
 def show_winner(winner):
     """

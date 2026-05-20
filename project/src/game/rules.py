@@ -105,20 +105,20 @@ def check_winner(board):
         lines.append(line)
     
     #Validar diagonal principal
-    diagonalP = []
+    diagonal_1 = []
 
     for i in range(BOARD_SIZE):
-        diagonalP.append(board[i][i])
+        diagonal_1.append(board[i][i])
     
-    lines.append(diagonalP)
+    lines.append(diagonal_1)
     
     #Validar diagonal secundaria
-    diagonalS = []
+    diagonal_2 = []
 
     for i in range(BOARD_SIZE):
-        diagonalS.append(board[i][BOARD_SIZE - 1 - i])
+        diagonal_2.append(board[i][BOARD_SIZE - 1 - i])
 
-    lines.append(diagonalS)
+    lines.append(diagonal_2)
 
     for line in lines:
         first_cell = line[0]
