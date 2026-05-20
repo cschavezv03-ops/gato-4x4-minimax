@@ -43,7 +43,6 @@ export function MenuScreen({
     <section className={styles.menu}>
       <header className={styles.header}>
         <h1 className={styles.title}>Gato</h1>
-        <p className={styles.subtitle}>Tres en raya contra una IA</p>
         <TeamCredit className={styles.credit} />
       </header>
 
